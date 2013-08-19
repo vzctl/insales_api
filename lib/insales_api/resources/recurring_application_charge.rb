@@ -6,7 +6,7 @@ module InsalesApi
 
     def update
       connection.post('/admin/recurring_application_charge.xml',
-                      encode,
+                      {:monthly => monthly}.to_xml(:root => :recurring_application_charge),
                       self.class.headers).tap do |response|
         load_attributes_from_response(response)
       end
